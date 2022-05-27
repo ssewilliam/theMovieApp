@@ -7,7 +7,6 @@ import * as fetcher from "../../fetcher";
 import SearchFilters from "../../components/searchfilter";
 import MovieList from "../../components/movielist";
 
-
 export default function Discover() {
   const [state, setState] = useState({
     keyword: "",
@@ -49,12 +48,17 @@ export default function Discover() {
   const { genreOptions, languageOptions, ratingOptions, totalCount, results } =
     state;
 
-  const searchMovies = () => null;
+  const searchMovies = async (query, year) => {
+    const path = query ? "search/movie" : "discover/movie";
+    const { results, total_results: totalCount } =
+      await fetcher.getMovieDetails(path, `&query=${query}&year=${year}`);
+    setState((prev) => ({ ...prev, results, totalCount }));
+  };
   return (
     <DiscoverWrapper>
       <MobilePageTitle>Discover</MobilePageTitle>{" "}
       {/* MobilePageTitle should become visible on mobile devices via CSS media queries*/}
-      <TotalCount>{totalCount} results</TotalCount>
+      <TotalCount>{totalCount || "No"} results</TotalCount>
       <MovieFilters>
         <SearchFilters
           genres={genreOptions}
