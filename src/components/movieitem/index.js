@@ -31,9 +31,9 @@ export default function MovieItem({ movie, genres }) {
 const GenreList = ({ genre_ids, genres }) => {
   return (
     <Headline wrap="wrap">
-      {genre_ids.map((id) =>
-        genres[id] ? <span>{genres[id]?.name}</span> : <></>
-      )}
+      {genre_ids.map((id) => (
+        <span key={id}>{genres[id]?.name}</span>
+      ))}
     </Headline>
   );
 };
@@ -68,7 +68,7 @@ const Title = styled.h2`
 const Headline = styled.div`
   display: flex;
   flex-direction: row;
-  flex-wrap: ${({wrap})=>wrap};
+  flex-wrap: ${({ wrap }) => wrap};
   span {
     padding-left: 5px;
     padding-right: 5px;
