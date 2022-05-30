@@ -1,10 +1,10 @@
 {
-  "name": "cord-frontend-challenge",
+  "name": "the-movie-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "axios": "^0.21.1",
-    "npm-run-all": "^4.1.5",
+    "prop-types": "^15.8.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
@@ -12,15 +12,28 @@
     "sass": "^1.34.0",
     "styled-components": "^5.2.1"
   },
+  "devDependencies": {
+    "eslint-config-prettier": "^8.3.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.6.2"
+  },
   "scripts": {
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start-js": "react-scripts start",
     "start": "npm-run-all start-js",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "prettier": "prettier src --check",
+    "prettier:write": "prettier src --write && npm run prettier",
+    "lint": "npm run prettier:write && eslint src",
+    "lint:fix": "npm run lint -- --fix --report-unused-disable-directives"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "prettier"
+    ]
   },
   "browserslist": {
     "production": [

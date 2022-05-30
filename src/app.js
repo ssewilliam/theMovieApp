@@ -1,36 +1,49 @@
-import React from "react";
-import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
-import styled from 'styled-components';
+import React, { useMemo, useState, createContext } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import styled from "styled-components";
 
 import SideNavBar from "./components/sidenavbar";
-
 import Discover from "./pages/discover";
+import "./css/app.scss";
 
-import './css/app.scss'; 
-
-export default class App extends React.Component {
-  render () {
-    return (
-      <Router>
-        <PageContainer>
-          <SideNavBar {...this.props} />
+export const AppContext = createContext({
+  state: {},
+  toggleSidebar: () => {},
+});
+export default function App(props) {
+  const [state, setState] = useState({ open: false });
+  const value = useMemo(() => {
+    const toggleSidebar = () =>
+      setState(prev => ({ ...prev, open: !prev.open }));
+    return { ...state, toggleSidebar };
+  }, [state]);
+  return (
+    <Router>
+      <PageContainer>
+        <AppContext.Provider value={value}>
+          <SideNavBar {...props} />
           <ContentWrapper>
             <Switch>
-              <Route path="/discover" component={Discover} {...this.props}/>
-              <Redirect to="/discover" />
+              <Route
+                path={["/", "/discover"]}
+                component={Discover}
+                {...props}
+              />
             </Switch>
           </ContentWrapper>
-        </PageContainer>
-      </Router>
-    );
-  }
+        </AppContext.Provider>
+      </PageContainer>
+    </Router>
+  );
 }
 
-
 const ContentWrapper = styled.main`
-  padding-left: 280px;
-`
+  padding-left: 260px;
+  @media only screen and (max-width: 1024px) {
+    padding-left: 0;
+  }
+`;
 
 const PageContainer = styled.main`
   overflow-x: hidden;
-`
+`;

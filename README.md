@@ -1,44 +1,132 @@
-# cord Coding Challenge (Front-end)
+# TheMovieApp
 
-### Introduction 
-Welcome! This coding challenge is designed to explore your React & SCSS Front-end skills. You will have to create a simple SPA based on the provided mockup and make a few API calls to a public web API.
+Welcome to TheMovieApp, Search movies by name, year, language, genre and/or ratings. Use our intuitive filters to find your movies.
 
-### The challenge
-You have to complete the test and write any necessary code so that the discover page looks like this [mockup] designs. All the images/icons you need are already imported and you can find them under the `images` folder. 
+## Table of Contents
 
-The discover page should enable the user to search for movies as keywords are typed into the search bar. Functionality for filtering does not need to be implemented, however the filter categories should still be expandable/collapsable upon clicking. On mobile devices, the navigation bar should slide in from left to right when the user clicks on the hamburger icon, and back when the user clicks on a close icon or outside the `SideBar`. In addition, you have to add all the responsive stylesheets for the app to run smoothly on mobile devices.
+- [Technologies and Libraries Used](#Technologies)
+- [Prerequisites](#prerequisites)
+- [How To Get Started](#Starting)
+  - [Testing](#testing)
+- [Project Structure](#project-structure)
+  - [Styling](#styling)
+  - [Folder Structure](#folder-structure)
+- [Available Scripts](#available-scripts)
+- [Contributors](#contributors)
 
-PS. Once you've completed the test follow all the `TODO` comments to make sure you have implemented all required functionality.
+## Technologies
 
-Movie data can be queried via [theMovieDB]:
-- Popular movies API doc: [popularMovies]
-- Movie Genres API doc: [movieGenres]
-- Search movies API doc: [searchMovies]
+- **React**
+- **[Jest](https://jestjs.io/docs/tutorial-react)** for testing
+- **[Sass & SCSS](https://sass-lang.com/guide)** for styling
 
-Packages & Technologies used in the repo:
-- `axios`
-- `sass`
-- `react-router-dom`
-- `styled-components`
+## Prerequisites
 
-### Submission guide
-Once you are done, please share your test on github with tech@cord.co and email the link to the repo to our In-house recruiter, Monika at monika@cord.co
+1. Open the browser and go to `https://www.themoviedb.org/signup`.
+2. Register for an account and request for an API Key.
+3. Clone project `git clone git@github.com:ssewilliam/theMovieApp.git`
+4. Navigate to root directory.
+5. Create a .env file following the .env.example file
+6. Replace the value for `REACT_APP_API_KEY` with your own API Key from step 2
 
-### How we review
-- **Design**: Were you able to translate the mockup into a web application that works well on various browsers and devices? Does the output match the mockup? Are all the required interactions implemented? Is your web app accessible? This is the most important aspect. Weight: 50%
-- **Functionality**: Does the search function work? Do the results load instantly as the user types? If the API backend has rate limiting enforced, how do you implement the aforementioned while also taking rate limiting into account? Weight: 25%
-- **Code quality**: Is the code easy to understand, maintain and scale? Is the coding style consistent with the language's best practices? Do you demonstrate a good grasp of JavaScript, React and SCSS? Weight: 15%
-- **Performance**: Does the UI render quickly with no performance issues? Have you ensured that API requests do not fire so often that they can brick browser performance? Weight: 10%
+### Starting
 
-### Bonus points
-- **Automated Tests** - Are there any automated tests?
-- **Documentation** - Is the README well written? Are the commit messages clear?
-- **Reporting** - React Profiler report with demonstrated knowledge of reading / reporting performance data 
-- **Production-readiness** - Is there proper error handling? Is the code ready to put into production? Code-Splitting?
-- **Future-readiness** - React Hooks? Web workers? PWA? Client-side caching?
+1. Download and install Node.js atleast 16.9.1 on your machine
+2. Build dependencies using `npm i` or `yarn` if you have yarn installed
+3. Set up respective environment variables in your `.env` file in your root directory.
+4. Run the project using `npm start` or `yarn start`
 
-[mockup]: <https://cord-coding-challenges.s3-eu-west-1.amazonaws.com/frontend-test-mockups.zip>
-[theMovieDB]: <https://www.themoviedb.org/documentation/api>
-[popularMovies]: <https://developers.themoviedb.org/3/movies/get-popular-movies>
-[movieGenres]: <https://developers.themoviedb.org/3/genres/get-movie-list>
-[searchMovies]: <https://developers.themoviedb.org/3/search/search-movies>
+### Testing
+
+To run the tests use this command: `npm run test`
+
+## Project Structure
+
+### Folder Structure
+
+The folder structure looks something like this:
+
+```
+src
+   |-- components
+   |   |-- accordionFilter
+   |   |-- checkbox
+   |   |-- movieitem
+   |   |-- movielist
+   |   |-- searchbar
+   |   |-- searchfilter
+   |   |-- sidenavbar
+   |-- css
+   |   |-- base
+   |-- images
+   |-- pages
+   |   |-- discover
+```
+
+### Styling
+
+For styling we will use **Sass** and styled componentss,
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### `npm start`
+
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
+
+### `npm test`
+
+Launches the test runner in the interactive watch mode.<br />
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm run prettier`
+
+Launches the prettier runner to run code farmat checks on the codebase.<br />
+Running `npm prettier:fix` starts the runner with autowrite mode turned on to autoformat fixable styles
+[running prettier](https://prettier.io/docs/en/index.html).
+
+### `npm run lint`
+
+Launches the eslint runner to run eslint checks on the codebase.<br />
+Running `npm lint:fix` starts the runner with autofix mode turned on to autofix fixable rules
+[running eslint](https://facebook.github.io/create-react-app/docs/running-tests).
+
+### `npm run build`
+
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+### Challenge Todos
+ - :heavy_check_mark: Style the component and checkmark to look like the mockup provided
+ - :heavy_check_mark: Complete the MovieItem component
+ - :heavy_check_mark: Complete the "AccordionFilter" component and re-use it for all filter categories
+ - :heavy_check_mark: Write the necessary functions to open and close the sidebar
+ - :heavy_check_mark: Implement a hamburger icon that controls the open state of the sidebar.
+ - :heavy_check_mark: Preload and set the popular movies and movie genres when page loads
+ - :heavy_check_mark: Update search results based on the keyword and year inputs
+ - :heavy_check_mark: All of your API requests should be in this file
+
+
+## Contributors
+
+[ssewilliam](https://github.com/ssewilliam)
