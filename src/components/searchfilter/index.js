@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import styled, { css } from "styled-components";
 
 // import * as colors from "../../colors";
-// import ExpandableFilter from "../accordionfilter";
+import ExpandableFilter from "../accordionfilter";
 import SearchBar from "../../components/searchbar";
 
 import SearchIcon from "../../images/search-icon-yellow.png";
@@ -45,6 +45,7 @@ export default function SearchFilters({ searchMovies, ...filters }) {
       </SearchFiltersCont>
       <SearchFiltersCont>
         <CategoryTitle>Movies</CategoryTitle>
+        <ExpandableFilter title="genre(s)" filters={filters.genres} />
         {/* TODO: Complete the "AccordionFilter" component and re-use it for all filter categories */}
       </SearchFiltersCont>
     </FiltersWrapper>
