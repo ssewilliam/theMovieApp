@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 import * as colors from "../../colors";
@@ -8,16 +9,23 @@ export default function Checkbox({ id, name, label, onChange, ...rest }) {
     <CheckboxCont className={rest.className}>
       <input
         id={id}
-        type="checkbox"
         name={name}
+        type="checkbox"
         checked={rest.checked}
-        onChange={(e) => onChange(name, e.target.checked)}
-      ></input>
+        onChange={e => onChange(name, e.target.checked)}
+      />
       <label htmlFor={id} className="checkmark"></label>
-      <label htmlFor={id}>{label}</label>
+      <span>{label}</span>
     </CheckboxCont>
   );
 }
+Checkbox.propTypes = {
+  id: PropTypes.any,
+  name: PropTypes.any,
+  label: PropTypes.any,
+  onChange: PropTypes.func,
+  rest: PropTypes.object,
+};
 
 const CheckboxCont = styled.div`
   position: relative;
@@ -60,7 +68,7 @@ const CheckboxCont = styled.div`
     display: block;
   }
 
-  label {
+  span {
     margin-left: 10px;
   }
 `;

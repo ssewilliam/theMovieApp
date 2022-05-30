@@ -14,7 +14,7 @@ export default function App(props) {
   const [state, setState] = useState({ open: false });
   const value = useMemo(() => {
     const toggleSidebar = () =>
-      setState((prev) => ({ ...prev, open: !prev.open }));
+      setState(prev => ({ ...prev, open: !prev.open }));
     return { ...state, toggleSidebar };
   }, [state]);
   return (

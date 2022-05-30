@@ -37,11 +37,11 @@ export default function Discover() {
     (async function () {
       const { results, total_results: totalCount } =
         await fetcher.getMovieDetails("movie/popular");
-      setState((prev) => ({ ...prev, results, totalCount }));
+      setState(prev => ({ ...prev, results, totalCount }));
       const { genres: genreOptions } = await fetcher.getMovieDetails(
         "genre/movie/list"
       );
-      setState((prev) => ({ ...prev, genreOptions }));
+      setState(prev => ({ ...prev, genreOptions }));
     })();
   }, []);
 
@@ -55,7 +55,7 @@ export default function Discover() {
     const path = query ? "search/movie" : "discover/movie";
     const { results, total_results: totalCount } =
       await fetcher.getMovieDetails(path, `&query=${query}&year=${year}`);
-    setState((prev) => ({ ...prev, results, totalCount }));
+    setState(prev => ({ ...prev, results, totalCount }));
   };
   return (
     <DiscoverWrapper>
@@ -128,7 +128,7 @@ const MoviesWrapper = styled.div`
   }
 `;
 const Overlay = styled.div`
-  top: 0;
+  top: -160px;
   bottom: 0;
   width: 100%;
   position: absolute;

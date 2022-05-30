@@ -1,8 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import * as colors from "../../colors";
 
-export default function MovieItem({ movie, genres }) {
+export default function MovieItem({ movie, ...rest }) {
   return (
     // TODO: Complete the MovieItem component
     <MovieItemWrapper>
@@ -17,8 +18,8 @@ export default function MovieItem({ movie, genres }) {
           <Title>{movie.title}</Title>
           <AverageVote>{movie.vote_average}</AverageVote>
         </Headline>
-        <GenreList {...{ genre_ids: movie.genre_ids, genres }} />
-        <div>
+        <GenreList {...{ ...rest, genre_ids: movie.genre_ids }} />
+        <div className={movie.overview?.length > 372 ? "movie-overview" : ""}>
           <p>{movie.overview}</p>
         </div>
         <DateReleased>
@@ -28,14 +29,22 @@ export default function MovieItem({ movie, genres }) {
     </MovieItemWrapper>
   );
 }
+MovieItem.propTypes = {
+  movie: PropTypes.object,
+  resr: PropTypes.object,
+};
 const GenreList = ({ genre_ids, genres }) => {
   return (
     <Headline wrap="wrap">
-      {genre_ids.map((id) => (
+      {genre_ids.map(id => (
         <span key={id}>{genres[id]?.name}</span>
       ))}
     </Headline>
   );
+};
+GenreList.propTypes = {
+  genre_ids: PropTypes.array,
+  genres: PropTypes.any,
 };
 const MovieItemWrapper = styled.div`
   position: relative;
@@ -44,7 +53,7 @@ const MovieItemWrapper = styled.div`
   padding: 20px;
   display: flex;
   margin: 15px 0;
-  &:first-child{
+  &:first-child {
     margin: 0;
   }
   @media only screen and (max-width: 425px) {
@@ -62,7 +71,7 @@ const LeftCont = styled.div`
     }
   }
   img {
-    max-height: 200px;
+    max-height: 260px;
   }
 `;
 
@@ -70,10 +79,22 @@ const RightCont = styled.div`
   display: flex;
   flex-direction: column;
   padding-left: 20px;
+  flex-grow: 1;
   @media only screen and (max-width: 425px) {
     padding-left: 0;
   }
-  flex-grow: 1;
+  .movie-overview {
+    p {
+      mask-image: linear-gradient(black, transparent);
+      -webkit-mask-image: linear-gradient(black, transparent);
+      height: 100px;
+      &:hover {
+        height: auto;
+        mask-image: unset;
+        -webkit-mask-image: unset;
+      }
+    }
+  }
 `;
 
 const Title = styled.h2`
