@@ -44,10 +44,23 @@ const MovieItemWrapper = styled.div`
   padding: 20px;
   display: flex;
   margin: 15px 0;
+  &:first-child{
+    margin: 0;
+  }
+  @media only screen and (max-width: 425px) {
+    display: block;
+  }
 `;
 
 const LeftCont = styled.div`
   display: inline-block;
+  @media only screen and (max-width: 425px) {
+    img {
+      max-height: unset !important;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  }
   img {
     max-height: 200px;
   }
@@ -57,6 +70,9 @@ const RightCont = styled.div`
   display: flex;
   flex-direction: column;
   padding-left: 20px;
+  @media only screen and (max-width: 425px) {
+    padding-left: 0;
+  }
   flex-grow: 1;
 `;
 
